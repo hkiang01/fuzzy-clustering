@@ -1,0 +1,68 @@
+---
+title: "Fuzzy Clustering - Harrison Kiang"
+output:
+  html_document: default
+---
+
+## Introduction
+
+Many K-partitioning clustering algorithms such as K-Medians, K-Modes, K-Medoids, etc. depend on object cluster assignment and centroid update.
+That is, to find the cluster assignments of $n$ points $X= \{ x_1, ..., x_n \}$, to $k$ clusters $C= \{ c_1, ..., c_k \}$, each iteration has a set of common steps:
+
+1. Assign each point $x \in X$ to the nearest cluster $c \in C$
+2. For every cluseter $c \in C$, calculate the new position of the respective centroid.
+
+In the cluster analysis part of [CS 412: Introduction to Data Mining](https://www.coursera.org/learn/cs-412/home/welcome) by professor [Jiawei Han](http://hanj.cs.illinois.edu/) from the [University of Illinois at Urbana-Champaign](http://illinois.edu/), there is a lecture in the "Paritioning-Based clustering Methods" section discussing "The K-Medians and K-Modes Clustering Methods".
+Here is the link: [3.5 The K-Medians and K-Modes Clustering Methods](https://www.coursera.org/learn/cs-412/lecture/pShI2/3-5-the-k-medians-and-k-modes-clustering-methods).
+An alternative for K-Modes, fuzzy K-Modes, was mentioned: "A **fuzzy K-Modes** method is proposed to calculate a **fuzzy cluster membership value** for each object to each cluster".
+Unfortunately, this important concept of fuzzy clustering is not covered in detail.
+
+The purpose of this paper is to serve as an overview as to what fuzzy clustering is, and include a comparison of fuzzy clustering and hard clustering.
+An algorithm employing fuzzy clustering called the Fuzzy c-Means Algorithm will also be discussed.
+
+## Fuzzy Clustering vs Hard Clustering
+
+Fuzzy clustering, or soft clustering, is where data points have the potential to belong to multiple clusters.
+Unlike clustering, or hard clustering, where points belong to exactly one cluster, points have the ability to be members of multiple clusters.
+
+The membership between points and clusters is stored in a $n$ x $k$ matrix $U$ where $u_{ij} \in [0,1]$ is the degree to which $x_i$ belongs to cluster $c_j$. Note that $\sum_{j=1}^{k} u_{ij} = 1$ for every row entry $u_i$ in $U$.
+This means that $\sum_{i=1}^{n}\sum_{j=1}^{k} u_{ij} = n$.
+That is, the degree to which points belong to all clusters sum to 1, and therefore the degree to which all points belong to all clusters is equal to the number of points. A sample membership matrix is shown below:
+
+$$\mathbf{U_{fuzzy}} = \left[\begin{array}
+{rrr}
+0 & 0 & 1 \\
+0 & 0.5 & 0.5 \\
+0.4 & 0 & 0.6
+\end{array}\right]$$
+
+Here, point $x_1$ is only a member of cluster $c_3$, point $x_2$ is equally a meber of both clusters $c_2$ and $c_3$, and point $x_3$ is a stronger member of $x_1$ compared to $x_3$.
+
+In hard clustering, such a membership matrix might look like this:
+
+$$\mathbf{U_{hard}} = \left[\begin{array}
+{rrr}
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{array}\right]$$
+
+Here, point $x_1$ is only a member of cluster $c_3$, point $x_2$ is only a meber of cluster $c_2$, and point $x_3$ is only a member of $x_3$. Note in both variants that for every row entry $u_i$ in $U$, $\sum_{j=1}^{k} u_{ij} = 1$, and therefore $\sum_{i=1}^{n}\sum_{j=1}^{k} u_{ij} = n$.
+
+## Fuzzy C-Means Clustering (FCM)
+
+Fuzzy C-Means Clustering is very similar to the K-Means algorithm. It takes the following as inputs:
+
+1. The number of clusters $k$
+2. The points to cluster $X$
+
+The basic outline of the Fuzzy C-Means Algorithm is as follows:
+
+
+## Resources
+https://en.wikipedia.org/wiki/Fuzzy_clustering#Comparison_to_Hard_Clustering
+
+https://reference.wolfram.com/legacy/applications/fuzzylogic/Manual/12.html
+
+https://homes.di.unimi.it/valenti/SlideCorsi/Bioinformatica05/Fuzzy-Clustering-lecture-Babuska.pdf
+
