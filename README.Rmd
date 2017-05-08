@@ -1,7 +1,8 @@
 ---
 title: "Fuzzy Clustering - Harrison Kiang"
 output:
-  html_document: default
+  html_document: 
+      code_folding: hide
 ---
 
 ## Introduction
@@ -19,6 +20,39 @@ Unfortunately, this important concept of fuzzy clustering is not covered in deta
 
 The purpose of this paper is to serve as an overview as to what fuzzy clustering is, and include a comparison of fuzzy clustering and hard clustering.
 An algorithm employing fuzzy clustering called the Fuzzy c-Means Algorithm will also be discussed.
+
+## Fuzzy logic
+
+If you ask someone to describe how the temperature feels outside, they may either say it's hot or it's cold.
+Here, there is no precise mathematical definition for "hot" or "cold". 
+You could also ask someone to describe a person's height. 
+They may say that a person is tall or short. 
+Here, there is no precise mathematical definition for "tall" or "short". 
+
+In both cases, it's possible to define a crisp bounday between what is defined as hot or cold, and between what is defined as tall or short.
+One could say that any temperature less than 68$^{\circ}$F is cold, and any temperature greater than or equal to 68$^{\circ}$F is hot.
+One could also say that any height less than 5 feet 10 inches is short, and any height greater or equal to 5 feet 10 inches is tall. Here, 68 $^{\circ}$ and 5 feet 10 inches are the crisp boundaries for temperature and height, respectively.
+
+```{r, tall_short_crisp}
+par(mfrow=c(1,2))
+x <- c(0,68,100)
+y <- c(0,1,1)
+plot(x,y, type="s", main = "Hot and Cold Crisp Boundary", xlab = "Temperature in Degrees Farenheit", ylab="", xaxt="n", yaxt="n")
+axis(1, at=c(0,68,100), labels=c(0,68,100))
+axis(2, at=c(0,1), labels=c("Cold", "Hot"), las=1)
+x <- c(121.92,177.8,213.36)
+y <- c(0,1,1)
+plot(x,y, type="s", main = "Tall and Short Crisp Boundary", xlab = "Height in Feet and Inches", ylab="", xaxt="n", yaxt="n")
+axis(1, at=c(121.92,177.8,213.36), labels=c("4'","5' 10''", "7'"))
+axis(2, at=c(0,1), labels=c("Tall", "Short"), las=1)
+```
+
+Height is a continuous field. One could say that everyone is tall to varying degrees. The graph below puts into a picture such a 
+
+Here is a video introduction on fuzzy logic
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/P8wY6mi1vV8" frameborder="0" allowfullscreen></iframe>
+
 
 ## Fuzzy Clustering vs Hard Clustering
 
@@ -49,7 +83,8 @@ $$\mathbf{U_{hard}} = \left[\begin{array}
 
 Here, point $x_1$ is only a member of cluster $c_3$, point $x_2$ is only a meber of cluster $c_2$, and point $x_3$ is only a member of $x_3$. Note in both variants that for every row entry $u_i$ in $U$, $\sum_{j=1}^{k} u_{ij} = 1$, and therefore $\sum_{i=1}^{n}\sum_{j=1}^{k} u_{ij} = n$.
 
-## Fuzzy C-Means Clustering (FCM)
+
+## Fuzzy C-Means Clustering (FCM) Algorithm
 
 Fuzzy C-Means Clustering is very similar to the K-Means algorithm. It takes the following as inputs:
 
@@ -58,11 +93,19 @@ Fuzzy C-Means Clustering is very similar to the K-Means algorithm. It takes the 
 
 The basic outline of the Fuzzy C-Means Algorithm is as follows:
 
+1. 
+
+
+Here is a link to an [Interactive Demo](https://home.deib.polimi.it/matteucc/Clustering/tutorial_html/AppletFCM.html) for Fuzzy C-Means.
 
 ## Resources
 https://en.wikipedia.org/wiki/Fuzzy_clustering#Comparison_to_Hard_Clustering
 
+https://www.youtube.com/watch?v=P8wY6mi1vV8
+
 https://reference.wolfram.com/legacy/applications/fuzzylogic/Manual/12.html
+
+https://home.deib.polimi.it/matteucc/Clustering/tutorial_html/cmeans.html
 
 https://homes.di.unimi.it/valenti/SlideCorsi/Bioinformatica05/Fuzzy-Clustering-lecture-Babuska.pdf
 
