@@ -1,10 +1,10 @@
 ---
 title: "Fuzzy Logic and Clustering - Harrison Kiang"
 output:
+  word_document: default
   pdf_document: default
   html_document:
     code_folding: hide
-  word_document: default
 ---
 
 # Introduction
@@ -141,7 +141,7 @@ The objective function for Fuzzy C-Means is as follows:
 
 $J_m = \sum_{i=1}^{N} \sum_{j=1}^{C} u_{ij}^m ||x_i-c_j||^2 \ , \ 1 \leq m \textless \infty$
 
-$m$ is the fuzzifier and is real number greater than 1. 
+$m$ is the "fuzzifier". 
 A large $m$ results in smaller membership values $u_{ij}$ and therefore fuzzier clusters.
 If $m=1$, the memberships converge to 0 or 1, resulting in crisp partitioning. $m$ is typically set to 2 in the absence of domain knowledge.
 
@@ -169,6 +169,7 @@ $max_{ij}\{|u_{ij}^{(k+1)}-u_{ij}^{(k)}|\} \textless \epsilon$
 where $\epsilon$ is the termination criterion as inputed above.
 
 Here is a link to an [Interactive Demo](https://home.deib.polimi.it/matteucc/Clustering/tutorial_html/AppletFCM.html) for Fuzzy C-Means: 
+
 https://home.deib.polimi.it/matteucc/Clustering/tutorial_html/AppletFCM.html
 
 # Resources
